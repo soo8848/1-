@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMapper">
+
+    <!-- 아이디 중복 확인 (존재 여부 확인용) -->
+    <select id="idCheck" resultType="String">
+        select member_id
+        from members
+        where member_id = #{memberId}
+    </select>
+
+    <!-- 방명록 전체 조회 -->
+    <select id="getVisitors" resultType="com.oopsw.model.VisitorVO">
+        select visitor_no_seq as visitorNo,
+               member_id as memberId,
+               contents,
+               in_date as inDate
+        from visitors 
+        order by visitor_no_seq desc
+    </select>
+
+    <!-- 로그인 (회원정보 조회) -->
+    <select id="selectLogin" parameterType="com.oopsw.model.MemberVO"
+            resultType="String">
+        select member_id as memberId,
+               pw,
+               name,
+               in_date as inDate
+        from members 
+        where member_id = #{memberId} 
+          and pw = #{pw}
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="addMember" parameterType="com.oopsw.model.MemberVO">
+        insert into members (member_id, pw, name, in_date)
+        values (#{memberId}, #{pw}, #{name}, sysdate)
+    </insert>
+
+    <!-- 방명록 수정 -->
+    <update id="updateVisitor" parameterType="com.oopsw.model.VisitorVO">
+        update visitors 
+        set contents = #{contents}, 
+            up_date = sysdate 
+        where visitor_no_seq = #{visitorNo} 
+          and member_id = #{memberId}
+    </update>
+
+</mapper>
