@@ -7,6 +7,9 @@ public class ActionFactory {
 		Action a=null;
 		//±¸ÇöºÎ
 		switch(cmd){
+		case "scheduleUI":
+			a=new ScheduleUIAction();
+			break;
 		case "loginUI":
 		case "mainUI":
 //			a=new LoginUIAction();
