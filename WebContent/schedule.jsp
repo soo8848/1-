@@ -7,6 +7,21 @@
 <!-- 공통 스타일 -->
 <link rel="stylesheet" href="common.css" />
 </head>
+<style>
+.pm-schedule .calendar .dot { width:8px; height:8px; border-radius:999px; display:inline-block; }
+.pm-schedule .dot { width:10px; height:10px; border-radius:50%; margin-top:4px; flex-shrink:0; }
+.pm-schedule .dot.red    { background: #e74c3c; }
+.pm-schedule .dot.orange { background:#ff9800; }
+.pm-schedule .dot.yellow { background:#ffc107; }
+.pm-schedule .dot.green  { background:#25d366; }
+.pm-schedule .dot.blue   { background:#2196f3; }
+.pm-schedule .dot.navy   { background: #34495e; }
+.pm-schedule .dot.purple { background:#8a5be5; }
+.pm-schedule .dot.black  { background:#222; }
+.pm-schedule .dot.white  { background: #fff; border: 1px solid #ccc; }
+
+
+</style>
 <body class="pm-schedule">
 	<div class="container">
 
@@ -74,13 +89,13 @@
 								<th>일</th>
 							</tr>
 						</thead>
-						<tbody id="calendarTbody">
+						<tbody>
 						</tbody>
 					</table>
 
 				</section>
 
-				<!-- 일정목록 -->
+				<!-- 일정목록 -->rr
 				<aside class="panel sched-list">
 					<h3 class="panel-title">일정목록</h3>
 					<ul class="sched-ul">
@@ -107,7 +122,7 @@
 							</div>
 							<div class="actions">
 
-								<button class="btn-xs">X</button>
+								<button class="btn-xs">X</button>rr
 							</div></li>
 					</ul>
 
