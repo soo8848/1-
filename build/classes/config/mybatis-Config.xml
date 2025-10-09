@@ -8,19 +8,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@192.168.0.5:1521:XE"/>
-        <property name="username" value="hr"/>
-        <property name="password" value="hr"/>
+        <property name="url" value="jdbc:oracle:thin:@192.168.0.43:1521:XE"/>
+        <property name="username" value="soo8848"/>
+        <property name="password" value="8581"/>
       </dataSource>
     </environment>
   </environments>
   
   <mappers>
-    <mapper resource="config/memberMapper.xml"/>
-   <!--     ml
-    <mapper resource="config/memberMapper.xml"/>
-    <mapper resource="config/memberMapper.xml"/>  
-    -->
+    <mapper resource="config/scheduleMapper.xml"/>
   </mappers>
   
 </configuration>

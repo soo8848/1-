@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="scheduleMapper">
+
+	<!-- 일정관리dot객체 데이터 불러오기 -->
+	<select id="getDotSchedule" parameterType="String"
+		resultType="com.oopsw.model.ScheduleVO">
+		SELECT
+		schedule_no AS scheduleNo,
+		employee_id AS employeeId,
+		schedule_date AS scheduleDate,
+		schedule_type AS scheduleType,
+		title,
+		start_time AS startTime,
+		end_time AS endTime
+		FROM schedules
+		WHERE employee_id = #{employeeId}
+	</select>
+
+
+</mapper>

@@ -84,31 +84,6 @@
 				<aside class="panel sched-list">
 					<h3 class="panel-title">일정목록</h3>
 					<ul class="sched-ul">
-						<li><span class="dot purple"></span>
-							<div class="sched-line">
-								<div class="when">23일 (화) 10:15 ~ 11:30</div>
-								<div class="what">B프로젝트 회의</div>
-							</div>
-							<div class="actions">
-								<button class="btn-xs">X</button>
-							</div></li>
-						<li><span class="dot yellow"></span>
-							<div class="sched-line">
-								<div class="when">23일 (화) 14:00</div>
-								<div class="what">D프로젝트 중간보고</div>
-							</div>
-							<div class="actions">
-								<button class="btn-xs">X</button>
-							</div></li>
-						<li><span class="dot black"></span>
-							<div class="sched-line">
-								<div class="when">23일 (화) 16:00</div>
-								<div class="what">E프로젝트 마감</div>
-							</div>
-							<div class="actions">
-
-								<button class="btn-xs">X</button>
-							</div></li>
 					</ul>
 
 
@@ -142,7 +117,7 @@
 
 						<div class="actions">
 							<button class="btn-xs">취소</button>
-							<button class="btn-xs">저장</button>
+							<button class="btn-xsr">저장</button>
 						</div>
 					</div>
 

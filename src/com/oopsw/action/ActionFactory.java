@@ -7,6 +7,9 @@ public class ActionFactory {
 		Action a=null;
 		//±¸ÇöºÎ
 		switch(cmd){
+		case "dotSchedule":
+			a=new DotScheduleAction();
+			break;
 		case "scheduleUI":
 			a=new ScheduleUIAction();
 			break;
