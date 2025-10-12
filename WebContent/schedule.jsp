@@ -5,9 +5,8 @@
 <title>일정관리 - ProMeet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 공통 스타일 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pap..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <link rel="stylesheet" href="CSS/common.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body class="pm-schedule">
 	<div class="container">

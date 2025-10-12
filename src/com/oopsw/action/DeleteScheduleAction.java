@@ -11,8 +11,6 @@ public class DeleteScheduleAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		// HttpSession session = request.getSession();
-		// String employeeId = (String) session.getAttribute("employeeId");
 		String scheduleNoStr = request.getParameter("scheduleNo");
 
 
