@@ -861,6 +861,16 @@ button,select,input{font:inherit}
   padding:6px 10px;
   background:#fff;
   font-size:13px;
+  cursor:pointer; 
+}
+
+.pm-schedule .sched-add-form .actions .save-xs,
+.pm-schedule .sched-edit-form .actions .cancel-xs{
+  border:1px solid #ccc;
+  border-radius:6px;
+  padding:6px 10px;
+  background:#fff;
+  font-size:13px;
   cursor:pointer;
 }
 /* ===== Task Table: Head controls (HTML4, no JS) ===== */

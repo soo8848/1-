@@ -9,9 +9,11 @@ $(document).ready(function() {
     var selectedDate;
     var dotList = [];
     var MAX_DOTS = 3;
+    
+    $('.sched-add-form, .add-btn').hide();
 
     function updateCalendar() {
-        $('.year').text(year + '년');
+        $('.year').text(year + '년똥');
         $('.month').text(month + '월');
 
         var firstDay = new Date(year, month - 1, 1).getDay();
@@ -113,10 +115,12 @@ $(document).ready(function() {
     $(document).on('click', '.calendar .day:not(.empty)', function() {
         $('.calendar .day').removeClass('selected');
         $(this).addClass('selected');
-
         selectedDate = $(this).data('date');
+        
+        $('.add-btn').show();
+//        $('.sched-add-form').show();
+        
         showScheduleList(dotList, selectedDate);
-        $('.sched-add-form').show();
     });
 
     $('#prevMonth').click(function() {
@@ -149,7 +153,14 @@ $(document).ready(function() {
     });
 
     $('.add-btn').click(function() {
+    	$(this).toggleClass('active');
+    	$('.sched-add-form').slideUp();
         $('.sched-add-form').toggle();
+    });
+    
+    $(document).on('click', '.save-xs, .cancel-xs', function() {
+        $('.sched-add-form').slideUp();
+        $('.add-btn').removeClass('active');
     });
 
     $('.btn-xsr').click(function() {
@@ -185,7 +196,6 @@ $(document).ready(function() {
     });
 
     $('.btn-xs').click(function() {
-        $('.sched-add-form').hide();
         $('.sched-add-form .input-s').val('');
         $('.sched-add-form input[name="color"]').prop('checked', false);
     });
@@ -208,6 +218,6 @@ $(document).ready(function() {
             $select.append($('<option>', { value: value, text: value }));
         }
     });
-
+    
     updateCalendar();
 });

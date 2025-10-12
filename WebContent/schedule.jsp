@@ -111,11 +111,11 @@
 						</div>
 
 						<div class="actions">
-							<button class="btn-xs">취소</button>	
-							<button class="btn-xs">저장</button>
+							<button class="save-xs">취소</button>	
+							<button class="cancel-xs">저장</button>
 						</div>
-						<button class="btn secondary add-btn active">+ 일정 추가</button>
 					</div>
+					<button class="btn secondary add-btn">+ 일정 추가</button>
 				</aside>
 			</div>
 		</div>

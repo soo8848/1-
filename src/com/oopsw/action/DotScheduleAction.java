@@ -20,7 +20,7 @@ public class DotScheduleAction implements Action {
         ScheduleDAO dao = new ScheduleDAO();
         List<ScheduleVO> dotSchedulesList = dao.getDotSchedule(employeeId);
         request.setAttribute("dotSchedulesList", dotSchedulesList);
-        return "json/dotSchedule.jsp";
+        return "Json/dotSchedule.jsp";
 	}
 
 }

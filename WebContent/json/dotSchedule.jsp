@@ -13,7 +13,6 @@
 
     for (ScheduleVO vo : dotSchedulesList) {
         Map<String, Object> map = new HashMap<>();
-        
         String scheduleDate = null;
         String startTime = null;
         String endTime = null;
