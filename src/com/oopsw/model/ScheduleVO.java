@@ -13,6 +13,7 @@ public class ScheduleVO {
 	private Date endTime;
 	
 	public ScheduleVO(){}
+	
 	public ScheduleVO(int scheduleNo, String employeeId, Date scheduleDate, String scheduleType, String title,
 			Date startTime, Date endTime) {
 		setScheduleNo(scheduleNo);

@@ -29,6 +29,7 @@
             endTime = timeFormat.format(vo.getEndTime());
         }
         
+        map.put("schedule_no", vo.getScheduleNo());
         map.put("schedule_date", scheduleDate);
         map.put("schedule_type", vo.getScheduleType());
         map.put("title", vo.getTitle());

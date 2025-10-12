@@ -1,10 +1,12 @@
 package test.com.oopsw.model;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.junit.Test;
@@ -53,6 +55,12 @@ public class ScheduleDAOTest {
 	}
 	
 	@Test
+	public void deleteScheduleTest() {
+			assertTrue(new ScheduleDAO().deleteSchedule(17));
+
+	}
+	
+	@Test
 	public void updateScheduleTest() {
 	    ScheduleVO vo = new ScheduleVO(
 	        17,                    // scheduleNo
@@ -65,16 +73,6 @@ public class ScheduleDAOTest {
 	    );
 
 	    new ScheduleDAO().updateSchedule(vo);
-	}
-
-	
-	@Test
-	public void deleteScheduleTest() {
-	    ScheduleVO vo = new ScheduleVO();
-	    vo.setScheduleNo(17);
-	    vo.setEmployeeId("1004014");
-
-	    new ScheduleDAO().deleteSchedule(vo);
 	}
 
 }

@@ -7,6 +7,12 @@ public class ActionFactory {
 		Action a=null;
 		//±¸ÇöºÎ
 		switch(cmd){
+		case "deleteSchedule":
+			a=new DeleteScheduleAction();
+			break;
+		case "addSchedule":
+			a=new AddScheduleAction();
+			break;
 		case "dotSchedule":
 			a=new DotScheduleAction();
 			break;

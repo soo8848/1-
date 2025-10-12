@@ -13,7 +13,7 @@ $(document).ready(function() {
     $('.sched-add-form, .add-btn').hide();
 
     function updateCalendar() {
-        $('.year').text(year + '년똥');
+        $('.year').text(year + '년');
         $('.month').text(month + '월');
 
         var firstDay = new Date(year, month - 1, 1).getDay();
@@ -90,7 +90,7 @@ $(document).ready(function() {
         }
 
         $.each(filteredList, function(index, item) {
-            const li = $('<li>');
+            const li = $('<li>').data('schedule-no', item.scheduleNo);
             const dot = $('<span>').addClass('dot ' + item.schedule_type);
             const when = $('<div>')
                 .addClass('when')
@@ -100,7 +100,10 @@ $(document).ready(function() {
                 );
             const what = $('<div>').addClass('what').text(item.title);
             const schedLine = $('<div>').addClass('sched-line').append(when, what);
-            li.append(dot, schedLine).appendTo(ul);
+            const deleteBtn = $('<button>')
+            .addClass('sched-delete-btn')
+            .html('<i class="fas fa-times"></i>');
+            li.append(dot, schedLine, deleteBtn).appendTo(ul);
         });
     }
 
@@ -158,13 +161,29 @@ $(document).ready(function() {
         $('.sched-add-form').toggle();
     });
     
-    $(document).on('click', '.save-xs, .cancel-xs', function() {
+    $(document).on('click', '.cancel-xs', function() {
         $('.sched-add-form').slideUp();
         $('.add-btn').removeClass('active');
     });
 
-    $('.btn-xsr').click(function() {
+    $('.save-xs').click(function() {
         var title = $('.sched-add-form .input-s').val().trim();
+        
+        var onlySpecialChars = /^[^a-zA-Z0-9가-힣]+$/;
+
+        var bannedWords = ['비난', '욕설', '비속어'];
+
+        if (
+            !title ||                          // 빈값
+            title.length < 2 ||               // 너무 짧은 제목
+            onlySpecialChars.test(title) ||   // 특수문자만 입력
+            bannedWords.some(function(word) { title.includes(word); })
+        ) {
+        	showAlert('올바르지 않은 일정명 ');
+            return;
+        };
+
+        
         var color = $('.sched-add-form input[name="color"]:checked').val();
         var startHour = $('#startHour').val();
         var startMin = $('#startMin').val();
@@ -172,30 +191,59 @@ $(document).ready(function() {
         var endMin = $('#endMin').val();
 
         if (!title || !color || !selectedDate) {
-            alert('일정명, 색상, 날짜를 선택해주세요.');
+        	showAlert('일정명과 색상을 선택해주세요.');
             return;
         }
 
         var startTime = startHour + ':' + startMin;
         var endTime = endHour + ':' + endMin;
+        
+//        var sendData = {
+//            cmd: "addSchedule",
+//            scheduleDate: selectedDate,
+//            scheduleType: color,
+//            title: title,
+//            startTime: startTime,
+//            endTime: endTime
+//        };
+//
+//        console.log("서버로 전송할 데이터:", sendData);
 
-        dotList.push({
-            schedule_date: selectedDate,
-            schedule_type: color,
-            title: title,
-            start_time: startTime,
-            end_time: endTime
+        
+        $.ajax({
+            url: 'controller',
+            type: 'POST',
+            dataType: "json",
+            data: {
+                cmd: "addSchedule",
+                scheduleDate: selectedDate,
+                scheduleType: color,
+                title: title,
+                startTime: startTime,
+                endTime: endTime
+            },
+            success: function(response) {
+                if(response.result) {
+                    console.log('일정이 등록되었습니다!');
+                    updateCalendar();
+                    showScheduleList(dotList, selectedDate);
+                    $('.add-btn').addClass('active');
+                    $('.sched-add-form .input-s').val('');
+                    $('.sched-add-form input[name="color"]').prop('checked', false);
+                    $('.sched-add-form').hide();
+                } else {
+                    console.log('일정 등록에 실패했습니다.');
+                }
+            },
+            error: function() {
+            	showAlert('서버 통신 오류가 발생했습니다.');
+            }
         });
 
-        updateCalendar();
-        showScheduleList(dotList, selectedDate);
-
-        $('.sched-add-form .input-s').val('');
-        $('.sched-add-form input[name="color"]').prop('checked', false);
-        $('.sched-add-form').hide();
+        
     });
 
-    $('.btn-xs').click(function() {
+    $('.cancel-xs').click(function() {
         $('.sched-add-form .input-s').val('');
         $('.sched-add-form input[name="color"]').prop('checked', false);
     });
@@ -205,7 +253,7 @@ $(document).ready(function() {
 
     $.each(hourSelects, function(index, selector) {
         const $select = $(selector);
-        for (var h = 0; h < 24; h++) {
+        for (var h = 0; h < 24; h++) { //국제 표준 시간 0~23
             const value = h.toString().padStart(2, '0');
             $select.append($('<option>', { value: value, text: value }));
         }
@@ -213,10 +261,40 @@ $(document).ready(function() {
 
     $.each(minSelects, function(index, selector) {
         const $select = $(selector);
-        for (var m = 0; m < 60; m++) {
+        for (var m = 0; m < 60; m++) { //국제 표준 시간 0~59
             const value = m.toString().padStart(2, '0');
             $select.append($('<option>', { value: value, text: value }));
         }
+    });
+    
+    function showAlert(message) {
+    	  $('#alertMessage').text(message);
+    	  $('#customAlert').show();
+    	}
+    
+    ul.on('click', '.sched-delete-btn', function() {
+    	   $.ajax({
+    	        url: 'controller',
+    	        type: 'POST',
+    	        dataType: 'json',
+    	        data: {
+    	            cmd: 'deleteSchedule',
+    	            scheduleNo: scheduleNo,
+    	        },
+    	        success: function(response) {
+    	            if (response.result) {
+    	                li.remove();
+    	                console.log('일정이 삭제되었습니다.');
+                        updateCalendar();
+                        showScheduleList(dotList, selectedDate);
+    	            } else {
+    	            	showAlert('삭제 실패했습니다.');
+    	            }
+    	        },
+    	        error: function() {
+    	            showAlert('서버 통신 오류');
+    	        }
+    	    });
     });
     
     updateCalendar();

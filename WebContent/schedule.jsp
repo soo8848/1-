@@ -5,11 +5,12 @@
 <title>일정관리 - ProMeet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 공통 스타일 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pap..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <link rel="stylesheet" href="CSS/common.css" />
 </head>
 <body class="pm-schedule">
 	<div class="container">
-
 		<!-- 사이드바 -->
 		<div class="sidebar">
 			<div class="logo-wrap">
@@ -41,7 +42,7 @@
 
 			</nav>
 
-			<button class="logout">로그아웃</button>
+			<button class="logout">로그아웃</button>	
 		</div>
 
 		<!-- 메인 -->
@@ -83,9 +84,9 @@
 				<!-- 일정목록 -->
 				<aside class="panel sched-list">
 					<h3 class="panel-title"></h3>
-					<ul class="sched-ul">
-					</ul>
-
+					<div class="sched-scroll-container">
+						<ul class="sched-ul"></ul>
+					</div>
 
 
 					<!-- 일정 추가 폼 -->
@@ -104,21 +105,24 @@
 
 						<!-- 시간 선택 -->
 						<div class="time-picker">
-							<select id="startHour"></select> : 
-							<select id="startMin"></select> ~ 
-							<select id="endHour"></select> : 
-							<select id="endMin"></select>
+							<select id="startHour"></select> : <select id="startMin"></select>
+							~ <select id="endHour"></select> : <select id="endMin"></select>
 						</div>
 
 						<div class="actions">
-							<button class="save-xs">취소</button>	
-							<button class="cancel-xs">저장</button>
+							<button class="save-xs">저장</button>
+							<button class="cancel-xs">취소</button>
 						</div>
 					</div>
 					<button class="btn secondary add-btn">+ 일정 추가</button>
 				</aside>
 			</div>
 		</div>
+	</div>
+	<div id="customAlert"
+		style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid #ccc; padding: 20px; z-index: 9999;">
+		<p id="alertMessage"></p>
+		<button onclick="$('#customAlert').hide()">확인</button>
 	</div>
 	<script src="JS/schedule.js"></script>
 </body>

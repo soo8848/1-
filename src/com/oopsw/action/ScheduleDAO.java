@@ -19,27 +19,53 @@ public class ScheduleDAO {
 		return dotSchedulesList;
 	}
 
-	public void addSchedule(ScheduleVO scheduleVO) {
-		SqlSession conn=DBCP.getSqlSessionFactory().openSession();
-		conn.insert("scheduleMapper.addSchedule",scheduleVO);
-		conn.commit();
-		conn.close();
+	public boolean addSchedule(ScheduleVO scheduleVO) {
+	    SqlSession conn = DBCP.getSqlSessionFactory().openSession();
+	    boolean result = false;
+	    try {
+	        int count = conn.insert("scheduleMapper.addSchedule", scheduleVO);
+	        conn.commit();
+	        result = count > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        result = false;
+	    } finally {
+	        conn.close();
+	    }
+	    return result;
 	}
 
-	public void updateSchedule(ScheduleVO scheduleVO) {
-		SqlSession conn=DBCP.getSqlSessionFactory().openSession();
-		conn.update("scheduleMapper.updateSchedule",scheduleVO);
-		conn.commit();
-		conn.close();
+	public boolean deleteSchedule(int scheduleNo) {
+	    SqlSession conn = DBCP.getSqlSessionFactory().openSession();
+	    boolean result = false;
+	    try {
+	        int count = conn.insert("scheduleMapper.deleteSchedule", scheduleNo);
+	        conn.commit();
+	        result = count > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        result = false;
+	    } finally {
+	        conn.close();
+	    }
+	    return result;
 	}
 
-	public void deleteSchedule(ScheduleVO scheduleVO) {
-		SqlSession conn=DBCP.getSqlSessionFactory().openSession();
-		conn.delete("scheduleMapper.deleteSchedule",scheduleVO);
-		conn.commit();
-		conn.close();
+
+	public boolean updateSchedule(ScheduleVO scheduleVO) {
+	    SqlSession conn = DBCP.getSqlSessionFactory().openSession();
+	    boolean result = false;
+	    try {
+	        int count = conn.insert("scheduleMapper.updateSchedule", scheduleVO);
+	        conn.commit();
+	        result = count > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        result = false;
+	    } finally {
+	        conn.close();
+	    }
+	    return result;
 	}
-
-
 
 }
