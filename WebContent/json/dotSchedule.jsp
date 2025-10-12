@@ -1,5 +1,4 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.google.gson.GsonBuilder"%>
 <%@page contentType="application/json; charset=UTF-8" language="java" %>
 <%@page import="java.util.List, java.util.Map, java.util.ArrayList, java.util.HashMap" %>
 <%@page import="com.google.gson.Gson, com.oopsw.model.ScheduleVO" %>

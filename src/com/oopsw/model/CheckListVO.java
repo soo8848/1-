@@ -15,6 +15,15 @@ public class CheckListVO {
 	
 	
 	public CheckListVO(){}
+	public CheckListVO(int checkListNo, String contents, int completeFlag) {
+		setCheckListNo(checkListNo);
+		setContents(contents);
+		setCompleteFlag(completeFlag);
+	}
+	public CheckListVO(int taskNo, String contents) {
+		setTaskNo(taskNo);
+		setContents(contents);
+	}
 	public CheckListVO(int checkListNo, int taskNo, int completeFlag, String contents, Date inDate, Date upDate,
 			Date delDate) {
 		setCheckListNo(checkListNo);

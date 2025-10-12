@@ -20,11 +20,11 @@ $(document).ready(function() {
         var tbody = $('.calendar tbody');
         tbody.empty();
 
-        var tr = '<tr>';
+        var tr = $('<tr>');
         var dayCount = 0;
 
         for (var i = 0; i < firstDay; i++) {
-            tr += '<td><div class="day empty"></div></td>';
+            tr.append('<td><div class="day empty"></div></td>');
             dayCount++;
         }
 
@@ -33,8 +33,8 @@ $(document).ready(function() {
             var spanDot = '';
             var count = 0;
 
-            for (var i = 0; i < dotList.length; i++) {
-                var schedule = dotList[i];
+            for (var j = 0; j < dotList.length; j++) {
+                var schedule = dotList[j];
                 var ymd = schedule.schedule_date.split('-').map(Number);
                 if (ymd[0] === year && ymd[1] === month && ymd[2] === date) {
                     count++;
@@ -48,62 +48,58 @@ $(document).ready(function() {
                 spanDot += '<span class="more">+' + (count - MAX_DOTS) + '</span>';
             }
 
-            var dateStr = year + '-' + (month < 10 ? '0' + month : month) + '-' + (date < 10 ? '0' + date : date);
-            tr += '<td><div class="day' + todayClass + '" data-date="' + dateStr + '">' + date + spanDot + '</div></td>';
+            var dateStr = year + '-' + String(month).padStart(2, '0') + '-' + String(date).padStart(2, '0');
+            tr.append('<td><div class="day' + todayClass + '" data-date="' + dateStr + '">' + date + spanDot + '</div></td>');
             dayCount++;
 
             if (dayCount % 7 === 0) {
-                tr += '</tr><tr>';
+                tbody.append(tr);
+                tr = $('<tr>');
             }
         }
 
-        while (dayCount % 7 !== 0) {
-            tr += '<td><div class="day empty"></div></td>';
-            dayCount++;
+        if (dayCount % 7 !== 0) {
+            for (var k = dayCount % 7; k < 7; k++) {
+                tr.append('<td><div class="day empty"></div></td>');
+            }
+            tbody.append(tr);
         }
-
-        tr += '</tr>';
-        tbody.append(tr);
     }
 
     function showScheduleList(list, selectedDate) {
-        var ul = document.querySelector('.sched-ul');
-        ul.innerHTML = '';
+        const ul = $('.sched-ul').empty();
+        const currentMonth = String(month).padStart(2, '0');
+        const currentYear = year.toString();
 
-        var filteredList = [];
-        if (selectedDate) {
-            for (var i = 0; i < list.length; i++) {
-                if (list[i].schedule_date === selectedDate) {
-                    filteredList.push(list[i]);
-                }
+        const filteredList = list.filter(function(item) {
+            if (selectedDate) {
+                $('.panel-title').text("일정목록");
+                return item.schedule_date === selectedDate;
+            } else {
+                $('.panel-title').text("현재 월 전체일정목록");
+                const [itemYear, itemMonth] = item.schedule_date.split('-');
+                return itemYear === currentYear && itemMonth === currentMonth;
             }
-        } else {
-            filteredList = list;
-        }
+        });
 
         if (filteredList.length === 0) {
-            var li = document.createElement('li');
-            li.textContent = '일정이 없습니다.';
-            ul.appendChild(li);
-        } else {
-            for (var i = 0; i < filteredList.length; i++) {
-                var item = filteredList[i];
-                var li = document.createElement('li');
-                li.innerHTML =
-                    '<span class="dot ' + item.schedule_type + '"></span>' +
-                    '<div class="sched-line">' +
-                        '<div class="when">' +
-                            formatDate(item.schedule_date) + ' ' +
-                            (item.start_time ? item.start_time + (item.end_time ? ' ~ ' + item.end_time : '') : '') +
-                        '</div>' +
-                        '<div class="what">' + item.title + '</div>' +
-                    '</div>';
-                ul.appendChild(li);
-            }
+            $('<li>일정이 없습니다.</li>').appendTo(ul);
+            return;
         }
 
-        document.querySelector('.sched-add-form').style.display = 'block';
-        document.querySelector('.add-btn').style.display = 'block';
+        $.each(filteredList, function(index, item) {
+            const li = $('<li>');
+            const dot = $('<span>').addClass('dot ' + item.schedule_type);
+            const when = $('<div>')
+                .addClass('when')
+                .text(
+                    formatDate(item.schedule_date) + ' ' +
+                    (item.start_time ? item.start_time + (item.end_time ? ' ~ ' + item.end_time : '') : '')
+                );
+            const what = $('<div>').addClass('what').text(item.title);
+            const schedLine = $('<div>').addClass('sched-line').append(when, what);
+            li.append(dot, schedLine).appendTo(ul);
+        });
     }
 
     function formatDate(dateStr) {
@@ -120,6 +116,7 @@ $(document).ready(function() {
 
         selectedDate = $(this).data('date');
         showScheduleList(dotList, selectedDate);
+        $('.sched-add-form').show();
     });
 
     $('#prevMonth').click(function() {
@@ -141,10 +138,10 @@ $(document).ready(function() {
         method: 'GET',
         dataType: "json",
         data: { cmd: "dotSchedule" },
-        success: function(responseText) {
-            dotList = responseText;
+        success: function(response) {
+            dotList = response;
             updateCalendar();
-            showScheduleList(dotList); // 전체 일정 표시
+            showScheduleList(dotList);
         },
         error: function() {
             console.log('일정 dot 객체를 가져오는데 실패했습니다.');
@@ -158,13 +155,13 @@ $(document).ready(function() {
     $('.btn-xsr').click(function() {
         var title = $('.sched-add-form .input-s').val().trim();
         var color = $('.sched-add-form input[name="color"]:checked').val();
-        var startHour = $('.sched-add-form select').eq(0).val();
-        var startMin = $('.sched-add-form select').eq(1).val();
-        var endHour = $('.sched-add-form select').eq(2).val();
-        var endMin = $('.sched-add-form select').eq(3).val();
+        var startHour = $('#startHour').val();
+        var startMin = $('#startMin').val();
+        var endHour = $('#endHour').val();
+        var endMin = $('#endMin').val();
 
         if (!title || !color || !selectedDate) {
-            alert('일정명과 색상을 선택하고 날짜를 선택해주세요.');
+            alert('일정명, 색상, 날짜를 선택해주세요.');
             return;
         }
 
@@ -191,6 +188,25 @@ $(document).ready(function() {
         $('.sched-add-form').hide();
         $('.sched-add-form .input-s').val('');
         $('.sched-add-form input[name="color"]').prop('checked', false);
+    });
+
+    const hourSelects = ['#startHour', '#endHour'];
+    const minSelects = ['#startMin', '#endMin'];
+
+    $.each(hourSelects, function(index, selector) {
+        const $select = $(selector);
+        for (var h = 0; h < 24; h++) {
+            const value = h.toString().padStart(2, '0');
+            $select.append($('<option>', { value: value, text: value }));
+        }
+    });
+
+    $.each(minSelects, function(index, selector) {
+        const $select = $(selector);
+        for (var m = 0; m < 60; m++) {
+            const value = m.toString().padStart(2, '0');
+            $select.append($('<option>', { value: value, text: value }));
+        }
     });
 
     updateCalendar();

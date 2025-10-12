@@ -5,7 +5,7 @@
 <title>일정관리 - ProMeet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 공통 스타일 -->
-<link rel="stylesheet" href="common.css" />
+<link rel="stylesheet" href="CSS/common.css" />
 </head>
 <body class="pm-schedule">
 	<div class="container">
@@ -82,7 +82,7 @@
 
 				<!-- 일정목록 -->
 				<aside class="panel sched-list">
-					<h3 class="panel-title">일정목록</h3>
+					<h3 class="panel-title"></h3>
 					<ul class="sched-ul">
 					</ul>
 
@@ -104,24 +104,18 @@
 
 						<!-- 시간 선택 -->
 						<div class="time-picker">
-							<select><option>14</option>
-								<option>15</option>
-								<option>16</option></select> : <select><option>00</option>
-								<option>15</option>
-								<option>30</option></select> ~ <select><option>14</option>
-								<option>15</option>
-								<option>16</option></select> : <select><option>00</option>
-								<option>15</option>
-								<option>30</option></select>
+							<select id="startHour"></select> : 
+							<select id="startMin"></select> ~ 
+							<select id="endHour"></select> : 
+							<select id="endMin"></select>
 						</div>
 
 						<div class="actions">
-							<button class="btn-xs">취소</button>
-							<button class="btn-xsr">저장</button>
+							<button class="btn-xs">취소</button>	
+							<button class="btn-xs">저장</button>
 						</div>
+						<button class="btn secondary add-btn active">+ 일정 추가</button>
 					</div>
-
-					<button class="btn secondary add-btn active">+ 일정 추가</button>
 				</aside>
 			</div>
 		</div>

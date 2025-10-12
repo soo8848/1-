@@ -16,6 +16,17 @@ public class CommentVO {
 	
 	
 	public CommentVO(){}
+	public CommentVO(int commentNo,String contents) {
+		setCommentNo(commentNo);
+		setContents(contents);
+	}
+	public CommentVO(int taskNo, int projectJoinNo, String contents,String fileName, String filePath) {
+		setTaskNo(taskNo);
+		setProjectJoinNo(projectJoinNo);
+		setContents(contents);
+		setFileName(fileName);
+		setFilePath(filePath);
+	}
 	public CommentVO(int commentNo, int taskNo, int projectJoinNo, String contents, Date inDate, Date upDate,
 			String fileName, String filePath, Date uploadDate, Date delDate) {
 		setCommentNo(commentNo);

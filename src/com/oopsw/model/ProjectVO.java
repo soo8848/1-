@@ -14,11 +14,18 @@ public class ProjectVO {
 	private Date upDate;
 	private String description;
 	private Date delFlag;
+	private int memberCount;
+	private int totalCnt;
+	private int doneCnt;
+	private int dday;
+	
+	
 	
 	public ProjectVO(){}
 	public ProjectVO(int projectNo, String employeeId, String projectName, String client, Date startDate, Date endDate,
-			Date inDate, Date upDate, String description, Date delFlag) {
-		setProjectName(projectName);
+			Date inDate, Date upDate, String description, Date delFlag, int memberCount, int totalCnt, int doneCnt,
+			int dday) {
+		setProjectNo(projectNo);
 		setEmployeeId(employeeId);
 		setProjectName(projectName);
 		setClient(client);
@@ -28,6 +35,10 @@ public class ProjectVO {
 		setUpDate(upDate);
 		setDescription(description);
 		setDelFlag(delFlag);
+		setMemberCount(memberCount);
+		setTotalCnt(totalCnt);
+		setDoneCnt(doneCnt);
+		setDday(dday);
 	}
 
 	public int getProjectNo() {
@@ -90,13 +101,38 @@ public class ProjectVO {
 	public void setDelFlag(Date delFlag) {
 		this.delFlag = delFlag;
 	}
+	public int getMemberCount() {
+		return memberCount;
+	}
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
+	}
+	public int getTotalCnt() {
+		return totalCnt;
+	}
+	public void setTotalCnt(int totalCnt) {
+		this.totalCnt = totalCnt;
+	}
+	public int getDoneCnt() {
+		return doneCnt;
+	}
+	public void setDoneCnt(int doneCnt) {
+		this.doneCnt = doneCnt;
+	}
+	public int getDday() {
+		return dday;
+	}
+	public void setDday(int dday) {
+		this.dday = dday;
+	}
+
 	@Override
 	public String toString() {
 		return "ProjectVO [projectNo=" + projectNo + ", employeeId=" + employeeId + ", projectName=" + projectName
 				+ ", client=" + client + ", startDate=" + startDate + ", endDate=" + endDate + ", inDate=" + inDate
-				+ ", upDate=" + upDate + ", description=" + description + ", delFlag=" + delFlag + "]";
+				+ ", upDate=" + upDate + ", description=" + description + ", delFlag=" + delFlag + ", memberCount="
+				+ memberCount + ", totalCnt=" + totalCnt + ", doneCnt=" + doneCnt + ", dday=" + dday + "]";
 	}
-	
 	
 	
 	

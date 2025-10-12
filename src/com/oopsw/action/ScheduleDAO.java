@@ -19,4 +19,27 @@ public class ScheduleDAO {
 		return dotSchedulesList;
 	}
 
+	public void addSchedule(ScheduleVO scheduleVO) {
+		SqlSession conn=DBCP.getSqlSessionFactory().openSession();
+		conn.insert("scheduleMapper.addSchedule",scheduleVO);
+		conn.commit();
+		conn.close();
+	}
+
+	public void updateSchedule(ScheduleVO scheduleVO) {
+		SqlSession conn=DBCP.getSqlSessionFactory().openSession();
+		conn.update("scheduleMapper.updateSchedule",scheduleVO);
+		conn.commit();
+		conn.close();
+	}
+
+	public void deleteSchedule(ScheduleVO scheduleVO) {
+		SqlSession conn=DBCP.getSqlSessionFactory().openSession();
+		conn.delete("scheduleMapper.deleteSchedule",scheduleVO);
+		conn.commit();
+		conn.close();
+	}
+
+
+
 }

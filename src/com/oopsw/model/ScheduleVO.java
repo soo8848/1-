@@ -23,6 +23,16 @@ public class ScheduleVO {
 		setStartTime(startTime);
 		setEndTime(endTime);
 	}
+	
+	public ScheduleVO(String employeeId, Date scheduleDate, String scheduleType, String title,
+			Date startTime, Date endTime) {
+		setEmployeeId(employeeId);
+		setScheduleDate(scheduleDate);
+		setScheduleType(scheduleType);
+		setTitle(title);
+		setStartTime(startTime);
+		setEndTime(endTime);
+	}
 
 	public int getScheduleNo() {
 		return scheduleNo;
