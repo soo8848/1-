@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		schedule_date AS scheduleDate,
 		schedule_type AS scheduleType,
 		title,
-		start_time AS startTime,
+	    start_time AS startTime,
 		end_time AS endTime
 		FROM schedules
 		WHERE
@@ -48,15 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE schedule_no = #{scheduleNo}
 	</delete>
 
-
 	<!-- 일정관리 수정 -->
 	<update id="updateSchedule" parameterType="com.oopsw.model.ScheduleVO">
 		UPDATE schedules
 		SET
 		schedule_date = #{scheduleDate},
 		schedule_type = #{scheduleType},
-		title
-		= #{title},
+		title = #{title},
 		start_time = #{startTime},
 		end_time = #{endTime}
 		WHERE

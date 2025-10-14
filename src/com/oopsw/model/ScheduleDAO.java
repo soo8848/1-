@@ -1,12 +1,9 @@
-package com.oopsw.action;
+package com.oopsw.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-
-import com.oopsw.model.DBCP;
-import com.oopsw.model.ScheduleVO;
 
 public class ScheduleDAO {
 	

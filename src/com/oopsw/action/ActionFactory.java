@@ -1,5 +1,11 @@
 package com.oopsw.action;
 
+import com.oopsw.action.sceduleAction.AddScheduleAction;
+import com.oopsw.action.sceduleAction.DeleteScheduleAction;
+import com.oopsw.action.sceduleAction.DotScheduleAction;
+import com.oopsw.action.sceduleAction.ScheduleUIAction;
+import com.oopsw.action.sceduleAction.UpdateScheduleAction;
+
 public class ActionFactory {	
 	private ActionFactory(){}
 
@@ -7,6 +13,9 @@ public class ActionFactory {
 		Action a=null;
 		//±¸ÇöºÎ
 		switch(cmd){
+		case "updateSchedule":
+			a=new UpdateScheduleAction();
+			break;
 		case "deleteSchedule":
 			a=new DeleteScheduleAction();
 			break;

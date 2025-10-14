@@ -37,7 +37,6 @@
         map.put("end_time", endTime);
         dotList.add(map);
     }
-    // ymd하고 YMD하고 서로 다른 의미를 가짐.
     Gson gson = new Gson();
     String json = gson.toJson(dotList);
     out.print(json);

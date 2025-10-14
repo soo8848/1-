@@ -551,11 +551,6 @@ button,select,input{font:inherit}
 
 
 /* �슦痢� �씪�젙 紐⑸줉 */
-.sched-scroll-container {
-  max-height: 528px;
-  overflow-y: auto;
-}
-
 .pm-schedule .sched-list .panel-title {
   margin:0 0 8px 0; font-size:16px; font-weight:900; color:#3b2f66;
 }
@@ -664,7 +659,6 @@ button,select,input{font:inherit}
   margin-top:10px;
   width:100%;
 }
-
 .add-btn.active {
   background-color: #f9f2ff;
   border: 1px solid #d0b8f0;
@@ -867,21 +861,8 @@ button,select,input{font:inherit}
   padding:6px 10px;
   background:#fff;
   font-size:13px;
-  cursor:pointer; 
-}
-
-.pm-schedule .sched-add-form .actions .save-xs,
-.pm-schedule .sched-add-form .actions .cancel-xs,
-.pm-schedule .sched-edit-form .actions .save-xs,
-.pm-schedule .sched-edit-form .actions .cancel-xs {
-  border:1px solid #ccc;
-  border-radius:6px;
-  padding:6px 10px;
-  background:#fff;
-  font-size:13px;
   cursor:pointer;
 }
-
 /* ===== Task Table: Head controls (HTML4, no JS) ===== */
 
 /* 怨듯넻: �뱶濡��떎�슫 �엳�뒗 癒몃━湲� */
@@ -970,22 +951,3 @@ button,select,input{font:inherit}
   line-height: 1.5;
 }
 .is-edited{color: #8a86a3;}
-
-.sched-delete-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    float: right;       /* li 오른쪽에 배치 */
-    color: #888;
-    font-size: 14px;
-}
-
-.sched-delete-btn:hover {
-    color: red;
-}
-
-.pm-schedule .edit-btn {
-  margin-top:10px;
-  width:100%;
-}
-
