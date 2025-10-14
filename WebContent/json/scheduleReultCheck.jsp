@@ -3,7 +3,7 @@
 <%
     Boolean result = (Boolean) request.getAttribute("result");
 
-    Map<String, Object> map = new HashMap<String, Object>();
+    Map<String, Object> map = new HashMap<>();
     map.put("result", result);
 
     String json = new Gson().toJson(map);

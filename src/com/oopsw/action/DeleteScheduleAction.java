@@ -13,7 +13,6 @@ public class DeleteScheduleAction implements Action {
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
 		String scheduleNoStr = request.getParameter("scheduleNo");
 
-
 		int scheduleNo = Integer.parseInt(scheduleNoStr);
 		
 	    ScheduleDAO dao = new ScheduleDAO();

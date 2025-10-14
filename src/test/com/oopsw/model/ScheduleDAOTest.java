@@ -26,7 +26,7 @@ public class ScheduleDAOTest {
         assertNotNull("리스트가 null이면 안됨", list);
         System.out.println("조회된 일정 개수: " + list.size());
         
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");           
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");   
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
         
         if (!list.isEmpty()) {
