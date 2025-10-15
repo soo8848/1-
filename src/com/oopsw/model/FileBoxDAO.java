@@ -1,12 +1,8 @@
-package com.oopsw.action;
+package com.oopsw.model;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-
-import com.oopsw.model.DBCP;
-import com.oopsw.model.ProjectVO;
-import com.oopsw.model.FileBoxVO;
 
 public class FileBoxDAO {
     // 프로젝트 목록 조회
@@ -18,25 +14,25 @@ public class FileBoxDAO {
     }
     
     // 파일 검색 (부분 검색 가능)
-    public List<FileBoxVO> searchFiles(String keyword) {
+    public List<SearchFileBoxVO> searchFiles(String keyword) {
         SqlSession conn = DBCP.getSqlSessionFactory().openSession();
-        List<FileBoxVO> list = conn.selectList("fileBoxMapper.searchFiles", keyword);
+        List<SearchFileBoxVO> list = conn.selectList("fileBoxMapper.searchFiles", keyword);
         conn.close();
         return list;
     }
     
     // 프로젝트 이름 하고 프로젝트 내 업무들의 파일 갯수 조회
-    public List<FileBoxVO> getProjectNameTaskFileCount(int projectNo) {
+    public List<SearchFileBoxVO> getProjectNameTaskFileCount(int projectNo) {
         SqlSession conn = DBCP.getSqlSessionFactory().openSession();
-        List<FileBoxVO> list = conn.selectList("fileBoxMapper.getProjectNameTaskFileCount", projectNo);
+        List<SearchFileBoxVO> list = conn.selectList("fileBoxMapper.getProjectNameTaskFileCount", projectNo);
         conn.close();
         return list;
     }
 
     // 한 업무 내 파일 목록 조회
-    public List<FileBoxVO> getTaskFiles(int taskNo) {
+    public List<SearchFileBoxVO> getTaskFiles(int taskNo) {
         SqlSession conn = DBCP.getSqlSessionFactory().openSession();
-        List<FileBoxVO> list = conn.selectList("fileBoxMapper.getTaskFiles", taskNo);
+        List<SearchFileBoxVO> list = conn.selectList("fileBoxMapper.getTaskFiles", taskNo);
         conn.close();
         return list;
     }

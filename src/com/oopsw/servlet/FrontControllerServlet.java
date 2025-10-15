@@ -21,7 +21,7 @@ public class FrontControllerServlet extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		
 		if(cmd == null || cmd.trim().length() == 0) {
-			cmd="scheduleUI";
+			cmd="fileBoxWithinTaskUI";
 		}
 		
 		Action action = ActionFactory.getAction(cmd);

@@ -130,8 +130,7 @@
 			style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid #ccc; padding: 20px; z-index: 9999;">
 			<p id="alertMessage"></p>
 			<button onclick="$('#customAlert').hide()">확인</button>
+		</div>		
 		</div>
 		<script src="JS/schedule.js"></script>
-		
-		</div>
 </body>

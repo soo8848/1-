@@ -13,6 +13,15 @@ public class ActionFactory {
 		Action a=null;
 		//±¸ÇöºÎ
 		switch(cmd){
+		case "searchFileBox":
+			a=new searchFileBoxAction();
+			break;
+		case "fileBox":
+			a=new fileBoxAction();
+			break;
+		case "fileBoxWithinTaskUI":
+			a=new FileBoxWithinTaskUIAction();
+			break;
 		case "updateSchedule":
 			a=new UpdateScheduleAction();
 			break;

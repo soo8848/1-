@@ -5,7 +5,6 @@
 
 <%
     List<ScheduleVO> dotSchedulesList = (List<ScheduleVO>) request.getAttribute("dotSchedulesList");
-
     List<Map<String, Object>> dotList = new ArrayList<>();
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
