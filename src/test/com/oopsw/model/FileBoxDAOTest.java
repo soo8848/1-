@@ -9,12 +9,13 @@ import org.junit.Test;
 import com.oopsw.model.FileBoxDAO;
 import com.oopsw.model.ProjectVO;
 import com.oopsw.model.SearchFileBoxVO;
+import com.oopsw.model.ProjectFileBoxVO;
 
 public class FileBoxDAOTest {
 
     private FileBoxDAO fileBoxDAO = new FileBoxDAO();
 
-//    @Test
+    @Test
     public void testGetProjects() {
         List<ProjectVO> projects = fileBoxDAO.getProjects();
         for (ProjectVO projectVO : projects) {
@@ -40,12 +41,9 @@ public class FileBoxDAOTest {
         }
         }
     
-//    @Test
-//    public void testGetTaskFiles() {
-//        int taskNo = 15;
-//        List<FileBoxVO> files = fileBoxDAO.getTaskFiles(taskNo);
-//        for (FileBoxVO f : files) {
-//            System.out.println("Comment: " + f.getCommentFile() + ", Reply: " + f.getReplyFile());
-//        }
-//    }
+    @Test
+    public void testProjectFileBox() {
+    	List<ProjectFileBoxVO> result = new FileBoxDAO().getProjectNameTaskFileCount(8);
+    	System.out.println(result);
+    }
 }

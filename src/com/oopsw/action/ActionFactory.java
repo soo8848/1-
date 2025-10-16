@@ -1,5 +1,10 @@
 package com.oopsw.action;
 
+import com.oopsw.action.fileboxAction.FileBoxAction;
+import com.oopsw.action.fileboxAction.FileBoxUIAction;
+import com.oopsw.action.fileboxAction.SearchFileBoxAction;
+import com.oopsw.action.fileboxAction.filesTaskFileBoxAction;
+import com.oopsw.action.fileboxAction.projectFileBoxAction;
 import com.oopsw.action.sceduleAction.AddScheduleAction;
 import com.oopsw.action.sceduleAction.DeleteScheduleAction;
 import com.oopsw.action.sceduleAction.DotScheduleAction;
@@ -13,14 +18,20 @@ public class ActionFactory {
 		Action a=null;
 		//±¸ÇöºÎ
 		switch(cmd){
+		case "filesTaskFileBox":
+			a=new filesTaskFileBoxAction();
+			break;
+		case "projectFileBox":
+			a=new projectFileBoxAction();
+			break;
 		case "searchFileBox":
-			a=new searchFileBoxAction();
+			a=new SearchFileBoxAction();
 			break;
 		case "fileBox":
-			a=new fileBoxAction();
+			a=new FileBoxAction();
 			break;
-		case "fileBoxWithinTaskUI":
-			a=new FileBoxWithinTaskUIAction();
+		case "fileBoxUI":
+			a=new FileBoxUIAction();
 			break;
 		case "updateSchedule":
 			a=new UpdateScheduleAction();
