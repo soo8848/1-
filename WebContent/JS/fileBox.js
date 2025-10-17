@@ -88,29 +88,64 @@ $(document).ready(function() {
             success: function(textResponse) {
                 var jsonResponse = JSON.parse(textResponse);
                 $('.filebox-h2').text("업무 번호: " + taskNo + " 파일 목록");
+                if (jsonResponse.status === "success") {
+                var list = jsonResponse.data;
                 var $grid = $('#fileGrid');
                 $grid.empty();
-
-                if (jsonResponse.status === "success") {
-                    var taskFiles = jsonResponse.data;
-                    for (var i = 0; i < taskFiles.length; i++) {
-                        var item = taskFiles[i];
-                        var card = '<a class="file-card">' +
-                            '<span class="file-name">코멘트번호:' + (item.commentNo || '') + '<br></span>' +
-                            '<span class="small">코멘트파일:' + (item.commentFile || '') + '<br></span>' +
-                            '<span class="small">코멘트파일경로:' + (item.commentPath || '') + '<br></span>' +
-                            '<span class="file-name">답글번호:' + (item.replyNo || '') + '<br></span>' +
-                            '<span class="small">답글파일:' + (item.replyFile || '') + '<br></span>' +
-                            '<span class="small">답글파일경로:' + (item.replyPath || '') + '<br></span>' +
-                            '</a>';
-                        $grid.append(card);
-                    }
-                } else {
-                    alert("검색 실패: " + jsonResponse.message);
+                
+                var breadcrumbHtml = '';
+                if(list.length > 0){
+                	breadcrumbHtml =
+                		'<div class="breadcrumbs">' +
+                		(list[0].projectName || '') +
+                		'<span class="sep"> / </span>' +
+                		(list[0].taskName || '') +
+                		'</div>';
                 }
+                
+                $grid.append(breadcrumbHtml);
+                
+                var $fileTableDiv = $('#fileTableDiv');
+                $fileTableDiv.empty();
+
+          
+                var tableHead =
+                    '<table class="file-table">' +
+                        '<thead>' +
+                            '<tr>' +
+                                '<th class="left">파일명</th>' +
+                                '<th>작성자</th>' +
+                                '<th>등록일</th>' +
+                            '</tr>' +
+                        '</thead>' +
+                        '<tbody></tbody>' +
+                    '</table>';
+
+         
+            $fileTableDiv.append(tableHead);
+
+            var $tbody = $fileTableDiv.find('.file-table tbody');
+            $tbody.empty();
+
+            for (var i = 0; i < list.length; i++) {
+                var file = list[i];
+                var row =
+                    '<tr>' +
+                        '<td class="left">' + (file.fileName || '') + '</td>' +
+                        '<td>' + (file.writerName || '') + '</td>' +
+                        '<td>' + (file.inDate || '') + '</td>' +
+                    '</tr>';
+                $tbody.append(row);
             }
-        });
+        } else {
+            console.log("검색 실패: " + jsonResponse.message);
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error("에러 발생:", error);
     }
+});
+}
 
     $('.search-btn').click(function() {
         keyword = $('.search-input').val();
@@ -143,19 +178,24 @@ $(document).ready(function() {
                     var list = jsonResponse.data;
                     var $grid = $('#fileGrid');
                     $grid.empty();
-
+                    
                     var breadcrumbHtml = '';
-                    if (list.length > 0) {
-                        breadcrumbHtml =
-                            '<div class="breadcrumbs"><br>' +
-                                (list[0].projectName || '') +
-                                '<span class="sep"> / </span>' +
-                                (list[0].taskName || '') +
-                            '</div>';
+                    if(list.length > 0){
+                    	breadcrumbHtml =
+                    		'<div class="breadcrumbs">' +
+                    		(list[0].projectName || '') +
+                    		'<span class="sep"> / </span>' +
+                    		(list[0].taskName || '') +
+                    		'</div>';
                     }
+                    
+                    $grid.append(breadcrumbHtml);
+                    
+                    var $fileTableDiv = $('#fileTableDiv');
+                    $fileTableDiv.empty();
+                    
 
-                    var tableHtml =
-                        '<section class="panel" style="padding:0">' +
+                    var tableHead =
                             '<table class="file-table">' +
                                 '<thead>' +
                                     '<tr>' +
@@ -165,12 +205,12 @@ $(document).ready(function() {
                                     '</tr>' +
                                 '</thead>' +
                                 '<tbody></tbody>' +
-                            '</table>' +
-                        '</section>';
+                            '</table>';
 
-                    $grid.append(breadcrumbHtml + tableHtml);
+                 
+                    $fileTableDiv.append(tableHead);
 
-                    var $tbody = $grid.find('.file-table tbody');
+                    var $tbody = $fileTableDiv.find('.file-table tbody');
                     $tbody.empty();
 
                     for (var i = 0; i < list.length; i++) {
@@ -194,6 +234,7 @@ $(document).ready(function() {
     }
     
     $('.fileBox').on('click', function() {
+    	$('#fileTableDiv').empty();
     	renderFileBoxList();
     });
 

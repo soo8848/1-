@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.oopsw.action.Action;
 import com.oopsw.model.FileBoxDAO;
-import com.oopsw.model.FilesTaskFileBoxVO;
+import com.oopsw.model.SearchFileBoxVO;
 
 import util.CreateJsonResponse;
 import util.JsonResponse;
@@ -20,9 +20,9 @@ public class filesTaskFileBoxAction implements Action {
 		String taskNoStr = request.getParameter("taskNo");
 		System.out.println(taskNoStr);
 		int taskno = Integer.parseInt(taskNoStr);
-		List<FilesTaskFileBoxVO> taskFiles = new FileBoxDAO().getTaskFiles(taskno);
+		List<SearchFileBoxVO> taskFiles = new FileBoxDAO().searchFilesOrTask(null,taskno);
 		
-		  JsonResponse<List<FilesTaskFileBoxVO>> response = new JsonResponse<>("success", "업무 조회", taskFiles);
+		  JsonResponse<List<SearchFileBoxVO>> response = new JsonResponse<>("success", "업무 조회", taskFiles);
 		  String jsonResponse = CreateJsonResponse.toJson(response);
 		request.setAttribute("jsonResponse", jsonResponse);
 		

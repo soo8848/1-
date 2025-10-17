@@ -5,37 +5,41 @@ import java.util.Date;
 public class ProjectVO {
 	
 	private int projectNo;
-	private String employeeId;
+	private String creatorId;
 	private String projectName;
 	private String client;
 	private Date startDate;
 	private Date endDate;
 	private Date inDate;
-	private Date upDate;
+	private Date dateUp; 
+	private Date completeDate;
 	private String description;
-	private Date delFlag;
+	private Date delDate;
+	private int workingCount;
 	private int memberCount;
 	private int totalCnt;
 	private int doneCnt;
 	private int dday;
 	
 	
-	
 	public ProjectVO(){}
-	public ProjectVO(int projectNo, String employeeId, String projectName, String client, Date startDate, Date endDate,
-			Date inDate, Date upDate, String description, Date delFlag, int memberCount, int totalCnt, int doneCnt,
+	public ProjectVO(int projectNo, String creatorId, String projectName, String client, Date startDate, Date endDate,
+			Date inDate, Date dateUp, Date completeDate, String description, Date delDate, 
+			int workingCount, int memberCount, int totalCnt, int doneCnt,
 			int dday) {
-		setProjectNo(projectNo);
-		setEmployeeId(employeeId);
+		setProjectName(projectName);
+		setCreatorId(creatorId);
 		setProjectName(projectName);
 		setClient(client);
 		setStartDate(startDate);
 		setEndDate(endDate);
 		setInDate(inDate);
-		setUpDate(upDate);
+		setDateUp(dateUp);
+		setCompleteDate(completeDate);
 		setDescription(description);
-		setDelFlag(delFlag);
+		setDelDate(delDate);
 		setMemberCount(memberCount);
+        setWorkingCount(workingCount);
 		setTotalCnt(totalCnt);
 		setDoneCnt(doneCnt);
 		setDday(dday);
@@ -47,11 +51,11 @@ public class ProjectVO {
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
-	public String getEmployeeId() {
-		return employeeId;
+	public String getCreatorId() {
+		return creatorId;
 	}
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setCreatorId(String creatorId) {
+		this.creatorId = creatorId;
 	}
 	public String getProjectName() {
 		return projectName;
@@ -83,11 +87,17 @@ public class ProjectVO {
 	public void setInDate(Date inDate) {
 		this.inDate = inDate;
 	}
-	public Date getUpDate() {
-		return upDate;
+	public Date getDateUp() {
+		return dateUp;
 	}
-	public void setUpDate(Date upDate) {
-		this.upDate = upDate;
+	public void setDateUp(Date dateUp) {
+		this.dateUp = dateUp;
+	}
+	public Date getCompleteDate() {
+		return completeDate;
+	}
+	public void setCompleteDate(Date completeDate) {
+		this.completeDate = completeDate;
 	}
 	public String getDescription() {
 		return description;
@@ -95,12 +105,19 @@ public class ProjectVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getDelFlag() {
-		return delFlag;
+	public Date getDelDate() {
+		return delDate;
 	}
-	public void setDelFlag(Date delFlag) {
-		this.delFlag = delFlag;
+	public void setDelDate(Date delDate) {
+		this.delDate = delDate;
 	}
+	public int getWorkingCount(){ 
+		return workingCount; 
+		}
+	public void setWorkingCount(int workingCount){ 
+		this.workingCount = workingCount; 
+	}
+	
 	public int getMemberCount() {
 		return memberCount;
 	}
@@ -125,15 +142,12 @@ public class ProjectVO {
 	public void setDday(int dday) {
 		this.dday = dday;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "ProjectVO [projectNo=" + projectNo + ", employeeId=" + employeeId + ", projectName=" + projectName
+		return "ProjectVO [projectNo=" + projectNo + ", creatorId=" + creatorId + ", projectName=" + projectName
 				+ ", client=" + client + ", startDate=" + startDate + ", endDate=" + endDate + ", inDate=" + inDate
-				+ ", upDate=" + upDate + ", description=" + description + ", delFlag=" + delFlag + ", memberCount="
-				+ memberCount + ", totalCnt=" + totalCnt + ", doneCnt=" + doneCnt + ", dday=" + dday + "]";
+				+ ", dateUp=" + dateUp + ", completeDate=" + completeDate + ", description=" + description + ", delDate=" + delDate 
+				+ ", workingCount=" + workingCount + ", memberCount=" + memberCount + ", totalCnt=" + totalCnt + ", doneCnt=" + doneCnt + ", dday=" + dday + "]";
 	}
-	
-	
-	
 }
